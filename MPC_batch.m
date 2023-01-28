@@ -5,7 +5,6 @@ for N=1:N_input
     omega=zeros(N*n,n); %omega is (N*n,n)
     gama=zeros((N+1)*n,N*p);%kaf is (N*n,N*p)
     tempt=eye(n);
-    
     for i =1:N%add element by row
         row=i*n+(1:n);
         gama(row,:)=[tempt*B2,gama(row-n,1:end-p)];
@@ -30,5 +29,4 @@ for N=1:N_input
     kb=-inv(gama'*Q_bar*gama+R_bar)*gama'*Q_bar*omega;
     %to get a stable eigvalue
 end
-fprintf("This is the result of N=%d,R=%d\n",N_input,R)
 end
