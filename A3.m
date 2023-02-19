@@ -38,13 +38,14 @@ Ain=[F;G];
 Bin=[-2.5 5 0.5 0.5 2 2 2 2]';
 Aeq=[1 0 -1 0;0.4 -1 0 1];
 x0=1.5;
-Beq=[0.4*x0;0];
-[x_star1,~,~,~,lambda1]=quadprog(H,f,Ain,Bin,Aeq,Beq)
+Beq=[0.4*x0;0]
+[x_star1,fval41,~,~,lambda1]=quadprog(H,f,Ain,Bin,Aeq,Beq)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 gradf=H*x_star1;
 gradg = [Aeq; Ain]';
 KKT1 = gradf + gradg*[lambda1.eqlin;lambda1.ineqlin] %first KKT condition
 KKT2 = lambda1.ineqlin%the second KKT condition
+H=Aeq*x_star1-Beq
 KKT3 = Ain*(x_star1)-Bin % the third KKT condition
 KKT4 = lambda1.ineqlin.*(Ain*x_star1-Bin) %the fourth KKT condition
 %%
@@ -57,7 +58,7 @@ Bin=[0 5 0.5 0.5 2 2 2 2]';
 Aeq=[1 0 -1 0;0.4 -1 0 1];
 x0=1.5;
 Beq=[0.4*x0;0];
-[x_star2,~,~,~,lambda2]=quadprog(H,f,Ain,Bin,Aeq,Beq)
+[x_star2,fval42,~,~,lambda2]=quadprog(H,f,Ain,Bin,Aeq,Beq)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 gradf=H*x_star2;
 gradg = [Aeq; Ain]';
@@ -75,7 +76,7 @@ Bin=[-2.5 0 0.5 0.5 2 2 2 2]';
 Aeq=[1 0 -1 0;0.4 -1 0 1];
 x0=1.5;
 Beq=[0.4*x0;0];
-[x_star3,~,~,~,lambda3]=quadprog(H,f,Ain,Bin,Aeq,Beq)
+[x_star3,fval43,~,~,lambda3]=quadprog(H,f,Ain,Bin,Aeq,Beq)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 gradf=H*x_star3;
 gradg = [Aeq; Ain]';
